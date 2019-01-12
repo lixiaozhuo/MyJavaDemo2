@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link th:href="@{/style/show.css}" rel="stylesheet" type="text/css"/>
+    <title></title>
+</head>
+<body>
+<div class="div_container">
+    <form action="/showUser" method="post">
+        <div class="searchDiv">
+            <span>查询条件：</span>
+            <select name="key">
+                <option th:selected="${condition.key=='phone'}" value='phone'>手机号码</option>
+                <option th:selected="${condition.key=='username'}" value='username'>用户名称</option>
+            </select>
+            <span>查询值：</span>
+            <input type="text" name="value" th:value="${condition.value}"/>
+            <input type="submit" value="查询 "/>
+        </div>
+        <table style="text-align:center;">
+            <thead>
+            <tr >
+                <th>用户ID</th>
+                <th>手机号码</th>
+                <th>用户名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${pages.content}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.phone}"></td>
+                <td th:text="${user.username}"></td>
+                <td>
+                    <span th:if="${user.id==1}">管理员</span>
+                    <a th:if="${user.id!=1}" th:href="@{/editUser(userId=${user.id})}" class="a_edit">编辑</a>
+                    <a th:if="${user.id!=1}" th:href="@{/deleteUser(userId=${user.id})}" class="a_del"
+                       onclick='return confirm("是否确认删除？")'>删除</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4">
+                    <div>
+                        <span>第<strong th:text="${pages.number+1}"></strong>页  </span>
+                        <span>共<strong th:text="${pages.totalPages}"></strong>页  </span>
+                        <span>跳转至</span>
+                        <input type="text" name="page" class="txtPage"/>
+                        <input type="submit" value="转"/>
+                    </div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </form>
+</div>
+</body>
+</html>

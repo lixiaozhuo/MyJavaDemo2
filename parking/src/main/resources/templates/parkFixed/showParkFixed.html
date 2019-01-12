@@ -1,0 +1,70 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link th:href="@{/style/show.css}" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" th:src="@{/script/jquery-1.10.1.js}"></script>
+    <title></title>
+</head>
+<body>
+<div class="div_container">
+    <form action="/showParkFixed" method="post">
+        <div class="searchDiv">
+            <span>查询条件：</span>
+            <select name="key">
+                <option th:selected="${condition.key=='card_id'}" value='card_id'>IC卡号</option>
+                <option th:selected="${condition.key=='place_no'}" value='place_no'>车位编号</option>
+                <option th:selected="${condition.key=='car_no'}" value='car_no'>车辆编号</option>
+            </select>
+            <span>查询值：</span>
+            <input type="text" name="value" th:value="${condition.value}"/>
+            <input type="submit" value="查询 "/>
+        </div>
+        <table style="text-align:center;">
+            <thead>
+            <tr>
+                <th>记录编号</th>
+                <th>IC卡号</th>
+                <th>车位编号</th>
+                <th>车辆编号</th>
+                <th>入场日期</th>
+                <th>出场日期</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="parkFixed : ${pages.content}">
+                <td th:text="${parkFixed.id}"></td>
+                <td th:text="${parkFixed.card_id}"></td>
+                <td th:text="${parkFixed.place_no}"></td>
+                <td th:text="${parkFixed.car_no}"></td>
+                <td th:text="${#dates.format(parkFixed.entry_time,'yyyy-MM-dd HH:mm')}"></td>
+                <td th:text="${#dates.format(parkFixed.leave_time,'yyyy-MM-dd HH:mm')}"></td>
+                <td th:text="${parkFixed.leave_time==null ? '未出场' : '已出场'}"></td>
+                <td>
+                    <a th:if="${parkFixed.leave_time==null}" th:href="@{/leaveParkFixed(parkFixedId=${parkFixed.id})}" class="a_del"
+                       onclick='return confirm("是否确认出场？")'>出厂</a>
+                    <a th:if="${parkFixed.leave_time!=null}" th:href="@{/deleteParkFixed(parkFixedId=${parkFixed.id})}" class="a_del"
+                       onclick='return confirm("是否确认删除？")'>删除</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="8">
+                    <div>
+                        <span>第<strong th:text="${pages.number+1}"></strong>页  </span>
+                        <span>共<strong th:text="${pages.totalPages}"></strong>页  </span>
+                        <span>跳转至</span>
+                        <input type="text" name="page" class="txtPage"/>
+                        <input type="submit" value="转"/>
+                    </div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </form>
+</div>
+</body>
+</html>

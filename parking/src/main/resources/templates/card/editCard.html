@@ -1,0 +1,62 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <link th:href="@{/style/edit.css}" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" th:src="@{/script/jquery-1.10.1.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            //取消按钮点击事件
+            $("#btnCancel").click(function () {
+                location.href = "/showCard";
+            });
+        });
+    </script>
+</head>
+<body>
+<form action="/saveCard" method="post">
+    <table style=" margin:50px auto;">
+        <input type="hidden" name="id" th:value="${card?.id}"/>
+        <tbody>
+        <tr>
+            <td>车位编号：</td>
+            <td>
+                <select name="place.id" required>
+                    <option th:each="place : ${places}" th:selected="${card?.place?.id==place?.id}"   th:value='${place?.id}' th:text="${place?.no + '(ID=' + place?.id+ ')'}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>用户名：</td>
+            <td><input type="text" name="name" th:value="${card?.name}" required/></td>
+        </tr>
+        <tr>
+            <td>性别：</td>
+            <td>
+                <select name="gender" required>
+                    <option th:selected="${card?.gender=='男'}" value='男'>男</option>
+                    <option th:selected="${card?.gender=='女'}" value='女'>女</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>地址：</td>
+            <td><input type="text" name="address" th:value="${card?.address}" required/></td>
+        </tr>
+        <tr>
+            <td>车辆编号：</td>
+            <td><input type="text" name="car_no" th:value="${card?.car_no}" required/></td>
+        </tr>
+        <input type="hidden" name="state" value="0">
+        </tbody>
+        <tfoot>
+        <tr>
+            <td><input type="submit" value="保存" id="btnSure"/></td>
+            <td><input type="reset" value="取消" id="btnCancel"/></td>
+        </tr>
+        </tfoot>
+    </table>
+</form>
+</body>
+</html>

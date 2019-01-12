@@ -1,0 +1,41 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <link th:href="@{/style/edit.css}" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" th:src="@{/script/jquery-1.10.1.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            //取消按钮点击事件
+            $("#btnCancel").click(function () {
+                location.href = "/showCardTemporary";
+            });
+        });
+    </script>
+</head>
+<body>
+<form action="/saveCardTemporary" method="post">
+    <table style=" margin:50px auto;">
+        <input type="hidden" name="id" th:value="${card?.id}"/>
+        <tbody>
+        <tr>
+            <td>车位编号：</td>
+            <td>
+                <select name="place.id" required>
+                    <option th:each="place : ${places}" th:selected="${card?.place?.id==place?.id}"   th:value='${place?.id}' th:text="${place?.no + '(ID=' + place?.id + ')'}"></option>
+                </select>
+            </td>
+        </tr>
+        <input type="hidden" name="state" value="0">
+        </tbody>
+        <tfoot>
+        <tr>
+            <td><input type="submit" value="保存" id="btnSure"/></td>
+            <td><input type="reset" value="取消" id="btnCancel"/></td>
+        </tr>
+        </tfoot>
+    </table>
+</form>
+</body>
+</html>

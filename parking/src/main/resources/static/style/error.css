@@ -1,0 +1,25 @@
+* {
+    font-family: 微软雅黑;
+}
+.div_error {
+    width: 480px;
+    height: 150px;
+    margin: 0 auto;
+    margin-top: 120px;
+    padding-left: 150px;
+    background: url(../images/p_error.jpg) no-repeat left top;
+}
+.p_error {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    padding-top: 25px;
+}
+.p_error_info {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+}
+.p_error_info span {
+    font-weight: bold;
+}

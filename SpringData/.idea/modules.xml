@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Hibernate/Hibernate.iml" filepath="$PROJECT_DIR$/Hibernate/Hibernate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hibernate-JPA/Hibernate-JPA.iml" filepath="$PROJECT_DIR$/Hibernate-JPA/Hibernate-JPA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringData.iml" filepath="$PROJECT_DIR$/SpringData.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringDataJPA/SpringDataJPA.iml" filepath="$PROJECT_DIR$/SpringDataJPA/SpringDataJPA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringDataRedis/SpringDataRedis.iml" filepath="$PROJECT_DIR$/SpringDataRedis/SpringDataRedis.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="267.0" y="295.0">com.lixiaozhuo._01_creating._03_builder.OrbitalModule</node>
+    <node x="0.0" y="0.0">com.lixiaozhuo._01_creating._03_builder.AirShipBuilder</node>
+    <node x="170.0" y="464.0">com.lixiaozhuo._01_creating._03_builder.Engine</node>
+    <node x="334.0" y="104.0">com.lixiaozhuo._01_creating._03_builder.CustomAirshipDirector</node>
+    <node x="0.0" y="295.0">com.lixiaozhuo._01_creating._03_builder.AirShip</node>
+    <node x="334.0" y="0.0">com.lixiaozhuo._01_creating._03_builder.AirShipDirector</node>
+    <node x="0.0" y="464.0">com.lixiaozhuo._01_creating._03_builder.EscapeTower</node>
+    <node x="-12.0" y="148.0">com.lixiaozhuo._01_creating._03_builder.CustomAirShipBuilder</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.lixiaozhuo._01_creating._03_builder.CustomAirShipBuilder" target="com.lixiaozhuo._01_creating._03_builder.AirShipBuilder">
+      <point x="0.0" y="-50.0" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="com.lixiaozhuo._01_creating._03_builder.CustomAirshipDirector" target="com.lixiaozhuo._01_creating._03_builder.AirShipDirector">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="276.5" y="192.5" />
+  <SelectedNodes>
+    <node>com.lixiaozhuo._01_creating._03_builder.CustomAirShipBuilder</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

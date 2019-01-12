@@ -1,0 +1,57 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <link th:href="@{/style/edit.css}" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" th:src="@{/script/jquery-1.10.1.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            //取消按钮点击事件
+            $("#btnCancel").click(function () {
+                location.href = "/showParkTemporary";
+            });
+        });
+    </script>
+</head>
+<body>
+<form action="/saveParkTemporary" method="post">
+    <table style=" margin:50px auto;">
+        <input type="hidden" name="id" th:value="${parkTemporary?.id}"/>
+        <tbody>
+        <tr>
+            <td>临时ID卡号：</td>
+            <td><input type="text" name="card_id" th:value="${parkTemporary?.card_id}" required/></td>
+        </tr>
+        <tr>
+            <td>车位编号：</td>
+            <td><input type="text" name="place_no" th:value="${parkTemporary?.place_no}" required/></td>
+        </tr>
+        <tr>
+            <td>汽车编号：</td>
+            <td><input type="text" name="car_no" th:value="${parkTemporary?.car_no}" required/></td>
+        </tr>
+        <tr>
+            <td>入场时间：</td>
+            <td><input type="datetime-local" name="entry_time" th:value="${#dates.format(parkTemporary?.entry_time,'yyyy-MM-dd') + 'T' + #dates.format(parkTemporary?.entry_time,'HH:mm')}" required/></td>
+        </tr>
+        <tr>
+            <td>出场时间：</td>
+            <td><input type="datetime-local" name="leave_time" th:value="${#dates.format(parkTemporary?.leave_time,'yyyy-MM-dd') + 'T' + #dates.format(parkTemporary?.leave_time,'HH:mm')}" required/></td>
+        </tr>
+        <tr>
+            <td>单价：</td>
+            <td><input type="text" name="price" value="10" required/>元/h
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td><input type="submit" value="结算" id="btnSure" /></td>
+            <td><input type="button" value="取消" id="btnCancel"/></td>
+        </tr>
+        </tfoot>
+    </table>
+</form>
+</body>
+</html>

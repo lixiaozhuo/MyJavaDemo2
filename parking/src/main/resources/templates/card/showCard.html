@@ -1,0 +1,73 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link th:href="@{/style/show.css}" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" th:src="@{/script/jquery-1.10.1.js}"></script>
+    <title></title>
+</head>
+<body>
+<div class="div_container">
+    <form action="/showCard" method="post">
+        <div class="searchDiv">
+            <span>查询条件：</span>
+            <select name="key">
+                <option th:selected="${condition.key=='id'}" value='id'>IC卡号</option>
+                <option th:selected="${condition.key=='place'}" value='place'>车位ID</option>
+                <option th:selected="${condition.key=='car_no'}" value='car_no'>车辆编号</option>
+                <option th:selected="${condition.key=='state'}" value='state'>状态</option>
+            </select>
+            <span>查询值：</span>
+            <input type="text" name="value" th:value="${condition.value}"/>
+            <input type="submit" value="查询 "/>
+        </div>
+        <table style="text-align:center;">
+            <thead>
+            <tr>
+                <th>IC卡号</th>
+                <th>车位ID</th>
+                <th>车位编号</th>
+                <th>车主</th>
+                <th>性别</th>
+                <th>地址</th>
+                <th>车辆编号</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr th:each="card : ${pages.content}">
+                <td th:text="${card.id}"></td>
+                <td th:text="${card.place.id}"></td>
+                <td th:text="${card.place.no}"></td>
+                <td th:text="${card.name}"></td>
+                <td th:text="${card.gender}"></td>
+                <td th:text="${card.address}"></td>
+                <td th:text="${card.car_no}"></td>
+                <td th:text="${card.state==false ? '空闲' : '占用'}">
+                <td>
+                    <span th:if="${card.state!=false}">IC卡占用中</span>
+                    <a  th:if="${card.state==false}" th:href="@{/editCard(cardId=${card.id})}" class="a_edit">编辑</a>
+                    <a  th:if="${card.state==false}" th:href="@{/deleteCard(cardId=${card.id})}" class="a_del"
+                       onclick='return confirm("是否确认删除？")'>删除</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="9">
+                    <div>
+                        <span>第<strong th:text="${pages.number+1}"></strong>页  </span>
+                        <span>共<strong th:text="${pages.totalPages}"></strong>页  </span>
+                        <span>跳转至</span>
+                        <input type="text" name="page" class="txtPage"/>
+                        <input type="submit" value="转"/>
+                    </div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </form>
+</div>
+</body>
+</html>

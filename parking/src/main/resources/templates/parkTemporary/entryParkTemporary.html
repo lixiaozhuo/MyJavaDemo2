@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <link th:href="@{/style/add.css}" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" th:src="@{/script/jquery-1.10.1.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            //取消按钮点击事件
+            $("#btnCancel").click(function () {
+                location.href = "/showCard";
+            });
+        });
+    </script>
+</head>
+<body>
+<form action="/entryParkTemporary" method="post" class="Form">
+    <table style=" margin:50px auto;">
+        <tbody>
+        <tr>
+            <td>临时IC卡号：</td>
+            <td>
+                <select name="cardId" required>
+                    <option th:each="card : ${cards}" th:value='${card?.id}'
+                            th:text="${card?.id+'(车位='+ card?.place?.no+')' }"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>车牌号码：</td>
+            <td><input type="text" name="carNo" required/></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td><input type="submit" value="进场" id="btnSure" /></td>
+            <td><input type="reset" value="取消" id="btnCancel"/></td>
+        </tr>
+        </tfoot>
+    </table>
+</form>
+</body>
+</html>

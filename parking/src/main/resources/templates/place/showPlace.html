@@ -1,0 +1,66 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link th:href="@{/style/show.css}" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" th:src="@{/script/jquery-1.10.1.js}"></script>
+    <title></title>
+</head>
+<body>
+<div class="div_container">
+    <form action="/showPlace" method="post">
+        <div class="searchDiv">
+            <span>查询条件：</span>
+            <select name="key">
+                <option th:selected="${condition.key=='no'}" value='no'>车位编号</option>
+                <option th:selected="${condition.key=='section'}" value='section'>车位类别</option>
+                <option th:selected="${condition.key=='state'}" value='state'>车位状态</option>
+            </select>
+            <span>查询值：</span>
+            <input type="text" name="value" th:value="${condition.value}"/>
+            <input type="submit" value="查询 "/>
+        </div>
+        <table style="text-align:center;">
+            <thead>
+            <tr>
+                <th>车位ID</th>
+                <th>车位编号</th>
+                <th>类别</th>
+                <th>车位状态</th>
+                <th>车位备注</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="place : ${pages.content}">
+                <td th:text="${place.id}"></td>
+                <td th:text="${place.no}"></td>
+                <td th:text="${place.section}"></td>
+                <td th:text="${place.state==false ? '空闲' : '占用'}"></td>
+                <td th:text="${place.tag}"></td>
+                <td>
+                    <span th:if="${place.state!=false}">车位占用中</span>
+                    <a th:if="${place.state==false}" th:href="@{/editPlace(placeId=${place.id})}" class="a_edit">编辑</a>
+                    <a th:if="${place.state==false}"  th:href="@{/deletePlace(placeId=${place.id})}" class="a_del"
+                       onclick='return confirm("是否确认删除？")'>删除</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="6">
+                    <div>
+                        <span>第<strong th:text="${pages.number+1}"></strong>页  </span>
+                        <span>共<strong th:text="${pages.totalPages}"></strong>页  </span>
+                        <span>跳转至</span>
+                        <input type="text" name="page" class="txtPage"/>
+                        <input type="submit" value="转"/>
+                    </div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </form>
+</div>
+</body>
+</html>

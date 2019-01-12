@@ -1,0 +1,50 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <link th:href="@{/style/edit.css}" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" th:src="@{/script/jquery-1.10.1.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            //取消按钮点击事件
+            $("#btnCancel").click(function () {
+                location.href = "/showPlace";
+            });
+        });
+    </script>
+</head>
+<body>
+<form action="/savePlace" method="post">
+    <table style=" margin:50px auto;">
+        <input type="hidden" name="id" th:value="${place?.id}"/>
+        <tbody>
+        <tr>
+            <td>车位编号：</td>
+            <td><input type="text" name="no" th:value="${place?.no}" required/></td>
+        </tr>
+        <tr>
+            <td>车位类别区域：</td>
+            <td>
+                <select name="section">
+                    <option th:selected="${place?.section=='固定车位'}" value='固定车位'>固定车位</option>
+                    <option th:selected="${place?.section=='临时车位'}" value='临时车位'>临时车位</option>
+                </select>
+            </td>
+        </tr>
+        <input type="hidden" name="state" value="0">
+        <tr>
+            <td>车位备注：</td>
+            <td><input type="text" name="tag" th:value="${place?.tag}"/></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td><input type="submit" value="保存" id="btnSure"/></td>
+            <td><input type="reset" value="取消" id="btnCancel"/></td>
+        </tr>
+        </tfoot>
+    </table>
+</form>
+</body>
+</html>
