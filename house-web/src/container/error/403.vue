@@ -1,0 +1,17 @@
+<template>
+    <div>
+        <h1>Oops!!! Access Denied</h1>
+        <h2>你无权访问该页面</h2>
+        <a href="/">返回首页</a>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "405"
+    }
+</script>
+
+<style scoped>
+
+</style>

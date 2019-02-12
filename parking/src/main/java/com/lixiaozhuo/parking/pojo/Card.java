@@ -89,7 +89,6 @@ public class Card implements Serializable {
         this.car_no = car_no;
     }
 
-
     public Boolean getState() {
         return state;
     }
